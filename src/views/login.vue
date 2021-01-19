@@ -11,13 +11,27 @@
         没有账号？
         <a href="#/register" class="">去注册</a>
       </p>
-      <div data-v-4bc01e24="" class="button">登录按钮</div>
+      <!-- 使用按钮组件 -->
+      <!-- 监听子组件发出的点击事件  由于做点击 所有子组件发出的cilick点击事件  此时的click不再是内置点击事件 而是子组件发出的click事件  子组件的优先级跟高 会覆盖内置的 -->
+      <mybutton type="primary" @click="loginclick">登录</mybutton>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+// 1.引入封装的按钮组件
+import mybutton from "../components/mybutton.vue";
+export default {
+  components: {
+    //  2. 注册组件
+    mybutton,
+  },
+  methods: {
+    loginclick() {
+      console.log(1);
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
