@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 配置路由最后一步渲染 -->
-    根首页
+    <!-- 根首页 -->
     <router-view></router-view>
   </div>
 </template>
