@@ -1,5 +1,9 @@
 <template>
-  <div id="app">项目开始了</div>
+  <div id="app">
+    <!-- 配置路由最后一步渲染 -->
+    根首页
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
