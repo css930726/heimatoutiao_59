@@ -15,6 +15,7 @@ const router = new VueRouter({
       // 按需引入组件
       component: () => import('../views/login.vue')
     }
+    , { path: '/', redirect: '/login' }
   ]
 })
 

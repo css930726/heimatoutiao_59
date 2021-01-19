@@ -4,8 +4,24 @@
       <div class="close"><span class="iconfont iconicon-test"></span></div>
       <div class="logo"><span class="iconfont iconnew"></span></div>
       <div class="inputs">
-        <input placeholder="请输入手机号" class="input" />
-        <input placeholder="密码" class="input" type="password" />
+        <!-- 使用封装的输入框 -->
+        <!-- :value="user.username  子组件中只有带有value的标签才可以省略 -->
+        <!-- 当子组件中发出input事件后父组件就可以直接使用v-modal了 -->
+        <!-- <myinput
+          :value="users.username"
+          @input="handleinput"
+          placeholder="请输入手机号"
+        ></myinput> -->
+        <myinput
+          :rules="/^1[3456789]\d{9}$/"
+          v-model="user.username"
+          placeholder="请输入手机号"
+        ></myinput>
+
+        <!-- v-modal的实质
+        1.为元素的value赋值 
+        2.监听子组件发出input事件 -->
+        <myinput v-model="user.password" placeholder="请输入密码"> </myinput>
       </div>
       <p class="tips">
         没有账号？
@@ -21,14 +37,26 @@
 <script>
 // 1.引入封装的按钮组件
 import mybutton from "../components/mybutton.vue";
+// 2.引入封装的输入框按钮
+import myinput from "../components/myinput.vue";
 export default {
+  data() {
+    return {
+      user: {
+        username: "13800138000",
+        password: "123",
+      },
+    };
+  },
   components: {
     //  2. 注册组件
     mybutton,
+    myinput,
   },
   methods: {
     loginclick() {
       console.log(1);
+      console.log(this.user.username);
     },
   },
 };
