@@ -16,6 +16,7 @@
           :rules="/^1[3456789]\d{9}$/"
           v-model="user.username"
           placeholder="请输入手机号"
+          msg="请输入正确的手机号"
         ></myinput>
 
         <!-- v-modal的实质
