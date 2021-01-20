@@ -40,6 +40,8 @@
 import mybutton from "../components/mybutton.vue";
 // 2.引入封装的输入框按钮
 import myinput from "../components/myinput.vue";
+// 解构进入登录axios
+import { userlogin } from "../apis/user.js";
 export default {
   data() {
     return {
