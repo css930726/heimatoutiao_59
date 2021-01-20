@@ -68,9 +68,11 @@ export default {
           // 等待异步函数返回数据 然后接收
           let res = await userlogin(this.user);
           console.log(res);
-          // 根据返回数据判断
+          // 根据返回数据判断  如果是200说明账号密码正确  进行登录
           if (res.data.statusCode == 200) {
             this.$toast(res.data.message);
+            // 验证成功将返回的token存储到缓存中;
+            localStorage.setItem("token", res.data.data.token);
           }
         } catch (err) {
           // 捕获错误

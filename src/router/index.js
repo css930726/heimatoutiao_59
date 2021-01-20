@@ -17,13 +17,38 @@ const router = new VueRouter({
       component: () => import('../views/login.vue')
     }
     // 注册
-    , { 
-      name: 'register', 
+    , {
+      name: 'register',
       path: '/register',
-      component:()=>import('../views/register.vue')
-     }
+      component: () => import('../views/register.vue')
+    },
+    // 个人中心
+    {
+      name: 'personal',
+      path: '/personal',
+      component: () => import('../views/personal.vue')
+    }
   ]
 })
-
+// 添加导航守卫  如果要跳转的页面需要token的话验证是否带有token 如果验证成功就跳转 如果没有 或者验证失败就不跳转
+router.beforeEach((to, from, next) => {
+  // ...
+  console.log(to, from);
+  // 如果要去的资源路径包含/personal  拿到token进行验证
+  if (to.path.indexOf('/personal') !== -1) {
+    // 取出登录后存储的token
+    let token = localStorage.getItem('token')
+    // 如果有token
+    if (token) {
+      next()
+    }
+    // 如果没有token
+    else {
+      // 跳转登录页   next('/') 或者 next({ path: '/' }): 跳转到一个不同的地址
+      next({ name: 'login' })
+    }
+  }
+  next()
+})
 // 4.暴露路由
 export default router
