@@ -30,7 +30,7 @@
       </p>
       <!-- 使用按钮组件 -->
       <!-- 监听子组件发出的点击事件  由于做点击 所有子组件发出的cilick点击事件  此时的click不再是内置点击事件 而是子组件发出的click事件  子组件的优先级跟高 会覆盖内置的 -->
-      <mybutton type="primary" @click="loginclick">登录</mybutton>
+      <mybutton type="primary" @click="login">登录</mybutton>
     </div>
   </div>
 </template>
@@ -57,9 +57,29 @@ export default {
     myinput,
   },
   methods: {
-    loginclick() {
-      console.log(1);
-      console.log(this.user.username);
+    // async标记异步函数
+    async login(e) {
+      // 验证收集数据的正确性  如果正确发送请求  如果失败提示用户密码或者名字错误
+      if (
+        /^1[3456789]\d{9}$/.test(this.user.username) &&
+        /^.{3,}$/.test(this.user.password)
+      ) {
+        try {
+          // 等待异步函数返回数据 然后接收
+          let res = await userlogin(this.user);
+          console.log(res);
+          // 根据返回数据判断
+          if (res.data.statusCode == 200) {
+            this.$toast(res.data.message);
+          }
+        } catch (err) {
+          // 捕获错误
+          this.$toast("用户名或者密码错误"); //这个错误是正则验证通过后发生的错误
+        }
+      } else {
+        // 如果拿到的收据不能通过正则表示格式错误  这个提示是正则验证不过时发出的
+        this.$toast("用户名密码错误");
+      }
     },
   },
 };
