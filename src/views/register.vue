@@ -30,7 +30,7 @@
       </p>
       <!-- 使用按钮组件 -->
       <!-- 监听子组件发出的点击事件  由于做点击 所有子组件发出的cilick点击事件  此时的click不再是内置点击事件 而是子组件发出的click事件  子组件的优先级跟高 会覆盖内置的 -->
-      <mybutton type="success" @click="login">注册</mybutton>
+      <mybutton type="success" @click="register">注册</mybutton>
     </div>
   </div>
 </template>
@@ -41,7 +41,7 @@ import mybutton from "../components/mybutton.vue";
 // 2.引入封装的输入框按钮
 import myinput from "../components/myinput.vue";
 // 解构进入登录axios
-import { userlogin } from "../apis/user.js";
+import { userregister } from "../apis/user.js";
 export default {
   data() {
     return {
@@ -58,7 +58,18 @@ export default {
     myinput,
   },
   methods: {
-    login() {},
+    // 标记异步函数
+    async register(e) {
+      let res = await userregister(this.user);
+      console.log(res);
+      // 如果请求结果中的信息是注册成功  那就就说明注册成功 就需要跳转到登录页面进行登录
+      if (res.data.message == "注册成功") {
+        this.$router.push({ name: "login" });
+      } //如果没有注册成功就说明输入的信息不合法
+      else {
+        this.$toast("注册失败");
+      }
+    },
   },
 };
 </script>

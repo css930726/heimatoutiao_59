@@ -11,3 +11,11 @@ export const userlogin = function (data) {
     data
   })
 }
+// 注册请求
+export const userregister = function (data) {
+  return axios({
+    url: '/register',
+    method: 'post',
+    data
+  })
+}
