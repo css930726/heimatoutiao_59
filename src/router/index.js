@@ -7,6 +7,7 @@ Vue.use(VueRouter)
 // 4.创建路由实例
 const router = new VueRouter({
   routes: [
+    // 登录
     {
       // 组件名字
       name: 'login',
@@ -15,7 +16,12 @@ const router = new VueRouter({
       // 按需引入组件
       component: () => import('../views/login.vue')
     }
-    , { path: '/', redirect: '/login' }
+    // 注册
+    , { 
+      name: 'register', 
+      path: '/register',
+      component:()=>import('../views/register.vue')
+     }
   ]
 })
 
