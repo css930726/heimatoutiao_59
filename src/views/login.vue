@@ -73,6 +73,8 @@ export default {
             this.$toast(res.data.message);
             // 验证成功将返回的token存储到缓存中;
             localStorage.setItem("token", res.data.data.token);
+            // 登录成功跳转个人中心页
+            this.$router.push({ path: "personal/" + res.data.data.user.id });
           }
         } catch (err) {
           // 捕获错误
