@@ -19,3 +19,11 @@ export const userregister = function (data) {
     data
   })
 }
+// 个人中心
+export const userinfo = function (id) {
+  return axios({
+    url: `user/${id}`,
+    // 传入token验证
+    headers: { Authorization: localStorage.getItem('token') }
+  })
+}
