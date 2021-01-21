@@ -18,7 +18,8 @@
             >{{ current.nickname }}
           </div>
           <!-- 获取的个人数据解析后插入对应的位置 -->
-          <div class="time">{{ current.create_date }}</div>
+          <!-- 使用管道符使用注册的过滤器 -->
+          <div class="time">{{ current.create_date | datafoarm }}</div>
         </div>
         <span class="iconfont iconjiantou1"></span>
       </div>
@@ -40,7 +41,13 @@ import hmcell from "../components/mycell.vue";
 import { userinfo } from "../apis/user.js";
 // 引入封装的axios拿到里面的服务器地址 后期返回图片没有服务器地址 需要拼接后再赋值接收
 import axios from "../utils/axios.js";
+// 引入解构封装的过滤器
+import { datafoarm } from "../utils/myfilte.js";
 export default {
+  filters: {
+    // 注册过滤器
+    datafoarm,
+  },
   data() {
     return {
       current: {},
