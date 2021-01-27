@@ -27,6 +27,12 @@ const router = new VueRouter({
       name: 'personal',
       path: '/personal/:id',
       component: () => import('../views/personal.vue')
+    },
+    // 编辑个人中心页
+    {
+      name: 'edituser',
+      path: '/edituser/:id',
+      component: () => import('../views/edit_profile.vue')
     }
   ]
 })

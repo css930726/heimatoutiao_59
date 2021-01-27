@@ -24,6 +24,6 @@ export const userinfo = function (id) {
   return axios({
     url: `user/${id}`,
     // 传入token验证
-    headers: { Authorization: localStorage.getItem('token') }
+    // headers: { Authorization: localStorage.getItem('token') }
   })
 }

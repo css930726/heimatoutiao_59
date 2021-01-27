@@ -1,6 +1,7 @@
 <template>
   <div class="personal">
-    <router-link to="/edit_profile">
+    <!-- 根据拿到的id去动态绑定去对应的id的页面 -->
+    <router-link :to="'/edit_pro/file/' + current.id">
       <div class="profile">
         <!-- 图片数据需要改造 返回来的只是后面的路径 需要加上本地服务器地址  一般是改造后再赋值给data里面的元素接收 -->
         <!-- 改造的图片地址需要根据是否有图片动态绑定 -->
@@ -8,14 +9,11 @@
         <div class="profile-center">
           <div class="name">
             <!-- 获取的个人数据解析后插入对应的位置 -->
-            <span
-              :class="{
+            <span :class="{
                 iconfont: true,
                 iconxingbienan: current.gender == 1,
                 iconxingbienv: current.gender == 0,
-              }"
-            ></span
-            >{{ current.nickname }}
+              }"></span>{{ current.nickname }}
           </div>
           <!-- 获取的个人数据解析后插入对应的位置 -->
           <!-- 使用管道符使用注册的过滤器 -->
@@ -28,7 +26,7 @@
     <hmcell title="我的跟帖" desc="跟帖/回复"></hmcell>
     <hmcell title="我的收藏" desc="文章/视频"></hmcell>
     <hmcell title="设置"></hmcell>
-    <hmbutton></hmbutton>
+    <hmbutton type='primary'>退出</hmbutton>
   </div>
 </template>
 
