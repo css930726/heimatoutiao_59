@@ -1,7 +1,7 @@
 <template>
   <div class="personal">
     <!-- 根据拿到的id去动态绑定去对应的id的页面 -->
-    <router-link :to="'/edit_pro/file/' + current.id">
+    <router-link :to="'/edit_personal/' + current.id">
       <div class="profile">
         <!-- 图片数据需要改造 返回来的只是后面的路径 需要加上本地服务器地址  一般是改造后再赋值给data里面的元素接收 -->
         <!-- 改造的图片地址需要根据是否有图片动态绑定 -->
